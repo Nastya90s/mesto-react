@@ -26,34 +26,34 @@
       .then(this._checkResponse);
     }
   
-    saveNewUserInfo(userData) {
+    saveNewUserInfo( name, description) {
       return fetch(`${this._baseUrl}/users/me`, {
         method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({
-          name: userData.title,
-          about: userData.subtitle
+          name: name,
+          about: description,
         })})
         .then(this._checkResponse);
     }
   
-    saveNewUserAvatar(userData) {
+    saveNewUserAvatar(avatar) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
         method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({
-          avatar: userData.avatar
+          avatar: avatar
         })})
         .then(this._checkResponse);
     }
   
-    sendNewCard(inputValues) {
+    sendNewCard(place, src) {
       return fetch(`${this._baseUrl}/cards`, {
         method: 'POST',
         headers: this._headers,
         body: JSON.stringify({
-          name: inputValues.place,
-          link: inputValues.src,
+          name: place,
+          link: src
         })})
         .then(this._checkResponse);
     }
@@ -66,17 +66,9 @@
         .then(this._checkResponse);
     }
   
-    addLike(cardId) {
-      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-        method: 'PUT',
-        headers: this._headers,
-        })
-        .then(this._checkResponse);
-    }
-  
-    removeLike(cardId) {
-      return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
-        method: 'DELETE',
+    changeLikeCardStatus(id, isLiked) {
+      return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+        method: isLiked ? "PUT" : "DELETE",
         headers: this._headers,
         })
         .then(this._checkResponse);
