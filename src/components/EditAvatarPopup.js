@@ -7,13 +7,13 @@ function EditAvatarPopup({isOpen, onUpdateAvatar, onClose}) {
 
   const [validationInputAvatar, setValidationInputAvatar] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [buttonValid, setButtonValid] = useState(false);
+  
 
 
   useEffect(() => {
     setValidationInputAvatar(false);
     setErrorMessage("");
-    setButtonValid(true);
+  
     avatarRef.current.value = "";
   }, [isOpen]);
 
@@ -45,7 +45,6 @@ function handleSubmit(e) {
       onClose={onClose}
       onSubmit={handleSubmit}
       disabled={!validationInputAvatar}
-      buttonValid={buttonValid && !errorMessage}
     >
       <input
         className="popup__input popup__input_type_avatar"
